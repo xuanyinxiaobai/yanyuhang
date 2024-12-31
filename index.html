@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="utf-8"> <!-- 设置页面的字符编码为UTF-8，支持中文显示 -->
-		<title>烟花秀</title> <!-- 定义网页的标题 -->
+		<title>致晏宇航</title> <!-- 定义网页的标题 -->
 		<link rel="stylesheet" href="firework.css"> <!-- 引入外部CSS文件，用于样式 -->
 	</head>
 	<body>
@@ -13,14 +13,31 @@
 			<span></span> <!-- 可能是烟花特效装饰用的元素 -->
 			<span></span> <!-- 可能是烟花特效装饰用的元素 -->
 		</div>
+
+
+    <!-- 添加艺术文字容器 -->
+    <div id="artTextContainer" style="display: none;">
+        <div class="artTextLine">蛇年如意，</div>
+        <div class="artTextLine">愿君如意，</div>
+        <div class="artTextLine">2025安康顺遂，</div>
+        <div class="artTextLine">吃好喝好睡好玩好！</div>
+        <div class="artTextLine">--致予晏宇航--</div>
+
+
+    </div>
+
 	
 		<canvas id="canvas"></canvas> <!-- 用于绘制烟花效果的画布 -->
+		
+		<!-- 添加音乐播放元素 -->
+		<audio id="music" src="hanser、泠鸢yousa、祖娅纳惜、鹿乃 - 吉祥话(1).mp3" preload="auto"></audio>
 	</body>
 </html>
 <script src="firework2.js"></script> <!-- 引入外部JavaScript文件，控制烟花效果 -->
 <script>
 	// 获取倒计时元素
-	let time = document.getElementById('time')
+	let time = document.getElementById('time');
+	let music = document.getElementById('music'); // 获取音乐元素
 	
 	// 定义一个函数，用于计算距离2025年的剩余时间
 	function getTimeTo2025(){
@@ -53,24 +70,28 @@
 	// 页面加载时立即刷新一次时间显示
 	refreshClock()
 
-	// 定义刷新时钟显示的函数
-	function refreshClock(){
-		let date = new Date(); // 获取当前日期和时间
-		let curr = date.getFullYear() * 100000000 // 年份部分
-				+ (date.getMonth() + 1) * 1000000 // 月份部分，加1因为月份从0开始
-				+ date.getDate() * 10000 // 日期部分
-				+ date.getHours() * 100 // 小时部分
-				+ date.getMinutes(); // 分钟部分
-		// 当前时间转换为一个精确到分钟的整数格式（如202412310150）
+// 定义刷新时钟显示的函数
+function refreshClock(){
+    let date = new Date(); // 获取当前日期和时间
+    let curr = date.getFullYear() * 100000000 // 年份部分
+            + (date.getMonth() + 1) * 1000000 // 月份部分，加1因为月份从0开始
+            + date.getDate() * 10000 // 日期部分
+            + date.getHours() * 100 // 小时部分
+            + date.getMinutes(); // 分钟部分
+    // 当前时间转换为一个精确到分钟的整数格式（如202412310150）
 
-		let targ = 202412311955; // 目标时间为2024年12月31日01:50
+    let targ = 202412312338; // 目标时间为2024年12月31日01:50
 
-		// 判断当前时间是否已经超过或达到目标时间
-		if(curr >= targ){
-			time.innerText = '蛇年快乐！'; // 如果目标时间已到，显示新年祝福
-		} else {
-			time.innerText = '距离2025蛇年还有:' + getTimeTo2025(); // 否则显示倒计时
-		}
-	}
+    // 判断当前时间是否已经超过或达到目标时间
+    if(curr >= targ){
+        music.play(); // 播放音乐
+
+        time.innerText = '元旦快乐！'; // 如果目标时间已到，显示新年祝福
+        // 显示艺术文字
+        document.getElementById('artTextContainer').style.display = 'block';
+    } else {
+        time.innerText = '距离2025蛇年还有:' + getTimeTo2025(); // 否则显示倒计时
+    }
+}
 
 </script>
