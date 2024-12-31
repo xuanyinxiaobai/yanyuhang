@@ -197,7 +197,7 @@ function checkAndTriggerCircleFireworks() {
         now.getHours() * 100 +
         now.getMinutes();
 
-    if (currentTime >= 202412312338 && !circleFireworksDone) {
+    if (currentTime >= 202501010000  && !circleFireworksDone) {
         // 绘制圆形烟花，半径200，中心点为屏幕中央，包含20个烟花
         drawCircleFireworks(cw / 2, ch / 2, 200, 20);
         circleFireworksDone = true; // 标记为已触发
@@ -251,7 +251,7 @@ function checkAndTriggerGradualHeartFireworks() {
         now.getHours() * 100 +
         now.getMinutes();
 
-    if (currentTime >= 202412312338 && !heartFireworksDone) {
+    if (currentTime >= 202501010000  && !heartFireworksDone) {
         // 绘制心形烟花，独占屏幕
         drawHeartFireworksGradually(cw / 2, ch / 2, 25, 80, 3000);
         heartFireworksDone = true; // 标记为已触发
