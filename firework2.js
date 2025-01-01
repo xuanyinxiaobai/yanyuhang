@@ -26,7 +26,7 @@ var canvas = document.getElementById( 'canvas' ), // 获取画布元素
 		my; // 鼠标 y 坐标
 
 
-targetTime = 202501012008; // 目标时间为2025年1月1日00:00（以毫秒为单位）
+targetTime = 202501012025; // 目标时间为2025年1月1日00:00（以毫秒为单位）
 
 
 // 设置画布的尺寸
