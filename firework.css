@@ -5,11 +5,22 @@ html,body {
 	padding: 0rem; /* 清除默认内边距 */
 }
 
+#backgroundCanvas {
+    position: relative;
+    height: 100vh; /* 画布高度占满视口 */
+    width: 100vw; /* 画布宽度占满视口 */
+    background-color: black; /* 设置背景色 */
+    cursor: crosshair; /* 鼠标悬停时显示十字光标 */
+    background-size: cover; /* 背景图片覆盖整个容器 */
+    background-position: center; /* 背景图片居中显示 */
+}
+
 #canvas {
-	height: 100%; /* 画布高度占满视口 */
-	width: 100%; /* 画布宽度占满视口 */
-	background-color: black; /* 画布背景色设置为黑色 */
-	cursor: crosshair; /* 鼠标悬停时显示十字光标 */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%; /* 画布宽度填满父容器 */
+    height: 100%; /* 画布高度填满父容器 */
 }
 
 .clock {
