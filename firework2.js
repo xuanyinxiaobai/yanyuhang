@@ -25,6 +25,10 @@ var canvas = document.getElementById( 'canvas' ), // 获取画布元素
 		mx, // 鼠标 x 坐标
 		my; // 鼠标 y 坐标
 
+
+targetTime = 202501012008; // 目标时间为2025年1月1日00:00（以毫秒为单位）
+
+
 // 设置画布的尺寸
 canvas.width = cw;
 canvas.height = ch;
@@ -197,9 +201,12 @@ function checkAndTriggerCircleFireworks() {
         now.getHours() * 100 +
         now.getMinutes();
 
-    if (currentTime >= 202501010000  && !circleFireworksDone) {
+    if (currentTime >= targetTime  && !circleFireworksDone) {
         // 绘制圆形烟花，半径200，中心点为屏幕中央，包含20个烟花
         drawCircleFireworks(cw / 2, ch / 2, 200, 20);
+	//背景替换
+	changeBackground();
+ 	setInterval(changeBackground, 3000); // 每隔3秒切换一次背景图
         circleFireworksDone = true; // 标记为已触发
     }
 }
@@ -234,7 +241,9 @@ function drawHeartFireworksGradually(centerX, centerY, size, count, duration) {
         let leftPoint = heartFunction(-angle); // 左侧点
         let rightPoint = heartFunction(angle); // 右侧点
 
-        // 发射烟花，起点为屏幕底部中心 (cw / 2, ch)
+	// 计算随机的起点x坐标
+	let randomX = Math.random() * cw; // 随机的 x 坐标，范围是 0 到 屏幕宽度
+	// 发射烟花，起点为屏幕底部，x轴为随机值，y轴为屏幕底部
         fireworks.push(new Firework(cw / 2, ch, centerX + leftPoint.x, centerY + leftPoint.y));
         fireworks.push(new Firework(cw / 2, ch, centerX + rightPoint.x, centerY + rightPoint.y));
 
@@ -251,7 +260,7 @@ function checkAndTriggerGradualHeartFireworks() {
         now.getHours() * 100 +
         now.getMinutes();
 
-    if (currentTime >= 202501010000  && !heartFireworksDone) {
+    if (currentTime >= targetTime  && !heartFireworksDone) {
         // 绘制心形烟花，独占屏幕
         drawHeartFireworksGradually(cw / 2, ch / 2, 25, 80, 3000);
         heartFireworksDone = true; // 标记为已触发
@@ -307,10 +316,7 @@ function loop() {
     checkAndTriggerGradualHeartFireworks();
     // 检测并触发圆形烟花
     checkAndTriggerCircleFireworks();
-
-
 }
-
 
 // 处理鼠标事件，更新鼠标坐标
 canvas.addEventListener( 'mousemove', function( e ) {
@@ -328,6 +334,20 @@ canvas.addEventListener( 'mouseup', function( e ) {
 	e.preventDefault();
 	mousedown = false;
 });
+
+
+let images = ['1.jpg', '2.jpg', '3.jpg', '4.jpg', '5.jpg', '6.jpg']; // 图片路径数组
+
+function changeBackground() {
+    // 获取背景容器元素
+    let backgroundCanvas = document.getElementById('backgroundCanvas');
+    
+    // 随机选择一个索引
+    let randomIndex = Math.floor(Math.random() * images.length);
+
+    // 设置背景图片
+    backgroundCanvas.style.backgroundImage = `url(${images[randomIndex]})`;
+}
 
 // 页面加载完成后，启动主循环
 window.onload = loop;
