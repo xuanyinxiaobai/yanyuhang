@@ -1,5 +1,5 @@
 // 使用 requestAnimationFrame 来实现动画，这是比 setTimeout 或 setInterval 更合适的方式。
-// 它会根据浏览器的刷新率优化动画性能。某些浏览器可能不支持，因此需要使用前缀，添加一个补丁函数。
+// 它会根据浏览器的刷新率优化动画性能。某些浏览器可能不支持，因此需要使用前缀，添加一个补丁函数
 window.requestAnimFrame = ( function() {
 	return window.requestAnimationFrame || // 标准请求动画帧
 				window.webkitRequestAnimationFrame || // Webkit 内核的前缀
